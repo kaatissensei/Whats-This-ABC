@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cshwac2xgk662"]
+
+[ext_resource type="Shader" uid="uid://bl8scuaobepdg" path="res://flashlight_mask.gdshader" id="1_yyx1e"]
+
+[sub_resource type="Gradient" id="Gradient_lquwl"]
+offsets = PackedFloat32Array(0.014925373, 0.029850746, 0.04477612)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lquwl"]
+gradient = SubResource("Gradient_lquwl")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.51, 0.51)
+
+[resource]
+shader = ExtResource("1_yyx1e")
+shader_parameter/mask = SubResource("GradientTexture2D_lquwl")
+shader_parameter/target = Vector2(0.5, 0.5)
+shader_parameter/size_mod = 2.5

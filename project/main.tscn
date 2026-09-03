@@ -1,0 +1,229 @@
+[gd_scene format=3 uid="uid://n58prnllehen"]
+
+[ext_resource type="Theme" uid="uid://pj36rioao0i6" path="res://hidden_letter.tres" id="1_ig7tw"]
+[ext_resource type="Material" uid="uid://cshwac2xgk662" path="res://flashlight_mat.tres" id="2_272bh"]
+[ext_resource type="Script" uid="uid://dtlra87hvpj7d" path="res://flashlight.gd" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://bgei2cbxy8o4n" path="res://sub_viewport_container.gd" id="4_1bvp3"]
+[ext_resource type="Theme" uid="uid://cb5qq8n64yyfv" path="res://main.tres" id="5_272bh"]
+[ext_resource type="Texture2D" uid="uid://c5udxmo1opdi0" path="res://assets/images/Flashlight Off Triangle.png" id="5_lquwl"]
+[ext_resource type="Texture2D" uid="uid://d238ee5cokslu" path="res://assets/images/lightbulb-fill.svg" id="6_5vw27"]
+
+[sub_resource type="Gradient" id="Gradient_h2yge"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o8r1j"]
+gradient = SubResource("Gradient_h2yge")
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_0xm2m"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y1bqk"]
+gradient = SubResource("Gradient_0xm2m")
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_1bvp3"]
+offsets = PackedFloat32Array(0, 0.39655173, 0.5574713, 0.59770113)
+colors = PackedColorArray(1, 1, 1, 1, 0.95549256, 0.95549256, 0.95549256, 1, 0.7792908, 0.77929187, 0.77929056, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7mycd"]
+gradient = SubResource("Gradient_1bvp3")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o8r1j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h5hro"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40tr1"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.49354547, 0.4935456, 0.4935453, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 20.0
+expand_margin_right = 20.0
+
+[sub_resource type="Theme" id="Theme_1bvp3"]
+VSlider/icons/grabber = SubResource("GradientTexture2D_7mycd")
+VSlider/icons/grabber_highlight = SubResource("GradientTexture2D_7mycd")
+VSlider/styles/grabber_area = SubResource("StyleBoxEmpty_o8r1j")
+VSlider/styles/grabber_area_highlight = SubResource("StyleBoxEmpty_h5hro")
+VSlider/styles/slider = SubResource("StyleBoxFlat_40tr1")
+
+[node name="Control" type="Control" unique_id=507234381]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=722183588]
+
+[node name="Darkness" type="TextureRect" parent="CanvasLayer" unique_id=760207659]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_o8r1j")
+script = ExtResource("3_h2yge")
+
+[node name="InTheDark" type="SubViewportContainer" parent="CanvasLayer" unique_id=1387432518]
+material = ExtResource("2_272bh")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+mouse_target = true
+script = ExtResource("4_1bvp3")
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/InTheDark" unique_id=325432008]
+disable_3d = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="LetterMarginContainer" type="MarginContainer" parent="CanvasLayer/InTheDark/SubViewport" unique_id=481420461]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -960.0
+offset_top = -152.0
+offset_right = 960.0
+offset_bottom = 152.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/InTheDark/SubViewport/LetterMarginContainer" unique_id=553961931]
+layout_mode = 2
+theme = ExtResource("1_ig7tw")
+bbcode_enabled = true
+text = "A"
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BG" type="TextureRect" parent="CanvasLayer/InTheDark/SubViewport" unique_id=835532022]
+z_index = -100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_y1bqk")
+
+[node name="Overlay" type="Control" parent="CanvasLayer" unique_id=1480473848]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LightOnBtn" type="Button" parent="CanvasLayer/Overlay" unique_id=577781321]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -340.0
+offset_top = -165.0
+offset_right = -190.0
+offset_bottom = -15.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 3
+theme = ExtResource("5_272bh")
+theme_override_icons/icon = ExtResource("6_5vw27")
+icon = ExtResource("6_5vw27")
+icon_alignment = 1
+expand_icon = true
+
+[node name="LightOnBtn2" type="Button" parent="CanvasLayer/Overlay" unique_id=1646371892]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -170.0
+offset_top = -165.0
+offset_right = -20.0
+offset_bottom = -15.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 3
+theme = ExtResource("5_272bh")
+theme_override_icons/icon = ExtResource("6_5vw27")
+icon = ExtResource("6_5vw27")
+icon_alignment = 1
+expand_icon = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Overlay" unique_id=1911607004]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = 159.0
+offset_right = -70.0
+offset_bottom = -287.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VSlider" type="VSlider" parent="CanvasLayer/Overlay/VBoxContainer" unique_id=479359443]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
+theme = SubResource("Theme_1bvp3")
+max_value = 30.0
+step = 0.2
+value = 15.0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/Overlay" unique_id=2082262209]
+visible = false
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -512.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/Overlay/SubViewportContainer" unique_id=332514421]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(512, 800)
+render_target_update_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Overlay/SubViewportContainer/SubViewport" unique_id=2105359067]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -247.0
+offset_right = 180.0
+offset_bottom = 413.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
+texture = ExtResource("5_lquwl")
+
+[connection signal="value_changed" from="CanvasLayer/Overlay/VBoxContainer/VSlider" to="CanvasLayer/InTheDark" method="_change_size"]

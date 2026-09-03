@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://n58prnllehen"]
+
+[ext_resource type="Theme" uid="uid://pj36rioao0i6" path="res://hidden_letter.tres" id="1_ig7tw"]
+[ext_resource type="Shader" uid="uid://chnk7phjjo7dn" path="res://flashlight.gdshader" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://dtlra87hvpj7d" path="res://flashlight.gd" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://bgei2cbxy8o4n" path="res://sub_viewport_container.gd" id="4_1bvp3"]
+[ext_resource type="Shader" uid="uid://bl8scuaobepdg" path="res://flashlight_mask.gdshader" id="4_lquwl"]
+
+[sub_resource type="Gradient" id="Gradient_0xm2m"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y1bqk"]
+gradient = SubResource("Gradient_0xm2m")
+fill_to = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hpctm"]
+shader = ExtResource("2_0xm2m")
+shader_parameter/mouse_uv = Vector2(0, 0)
+shader_parameter/radius = 0.1
+shader_parameter/softness = 0.02
+
+[sub_resource type="Gradient" id="Gradient_h2yge"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o8r1j"]
+gradient = SubResource("Gradient_h2yge")
+fill_to = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lquwl"]
+shader = ExtResource("4_lquwl")
+
+[node name="Control" type="Control" unique_id=507234381]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=722183588]
+
+[node name="BG" type="TextureRect" parent="CanvasLayer" unique_id=835532022]
+z_index = -100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_y1bqk")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=481420461]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -538.0
+offset_right = 542.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer" unique_id=553961931]
+layout_mode = 2
+theme = ExtResource("1_ig7tw")
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Darkness" type="TextureRect" parent="CanvasLayer" unique_id=760207659]
+material = SubResource("ShaderMaterial_hpctm")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_o8r1j")
+script = ExtResource("3_h2yge")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1387432518]
+material = SubResource("ShaderMaterial_lquwl")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_1bvp3")
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=325432008]
